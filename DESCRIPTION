@@ -1,0 +1,24 @@
+Package: tsCeatures
+Type: Package
+Title: Computes Time Series Features
+Version: 0.1.0
+Date: 2021-08-20
+Authors@R: c(
+  person("Trent", "Henderson", email = "then6675@uni.sydney.edu.au", role = c("cre", "aut"))
+  )
+Maintainer: Trent Henderson <then6675@uni.sydney.edu.au>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+Depends: 
+    R (>= 3.5.0)
+Imports: 
+    Rcpp
+Suggests: 
+    knitr,
+    markdown,
+    rmarkdown
+RoxygenNote: 7.1.1
+VignetteBuilder: knitr
