@@ -1,0 +1,28 @@
+---
+title: "Introduction to tsCeatures"
+author: "Trent Henderson"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to tsCeatures}
+  %\VignetteEngine{knitr::knitr}
+  %\usepackage[UTF-8]{inputenc}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  fig.height = 7,
+  fig.width = 9
+)
+```
+
+`tsCeatures` is a simple R package for the computation of a few time-series features coded in C++ for scalability and efficiency. You can install `tsCeatures` from GitHub:
+
+```{r, message = FALSE, warning = FALSE}
+devtools::install_github("hendersontrent/tsCeatures")
+```
+
+## Core functionality
+
+*Coming soon...*
