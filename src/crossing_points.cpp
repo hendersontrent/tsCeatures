@@ -8,22 +8,82 @@ using namespace Rcpp;
 //' @author Trent Henderson
 //' @export
 //' @examples
-//' x <- rnorm(100, 0, 1)
+//' x <- rnorm(100)
 //' crossing_points(x)
 //'
 // [[Rcpp::export]]
-NumericVector crossing_points(NumericVector x){
+int crossing_points(NumericVector x){
 
-  float mean;
-  int sum, i;
+  // Compute median
+
   int n = x.size();
+  double median;
 
-  sum = 0;
-
-  for(i = 0; i < n; i++) {
-    sum+=x[i];
+  if (n == 0)
+  {
+    return 0;
+  }
+  else
+  {
+    std::sort(x.begin(), x.end());
+    if (n % 2 == 0)
+    {
+      median = (x[n / 2 - 1] + x[n / 2]) / 2;
+    }
+    else
+    {
+      median = x[n / 2];
+    }
   }
 
-  mean = sum/n
-  return mean;
+  // Get signature of whether each point is below or equal to median
+
+  NumericVector ab(n);
+
+  for (int i = 0; i < n; i++){
+    if (x[i] <= median) {
+      ab[i] = 1;
+    } else{
+      ab[i] = 0;
+    }
+  }
+
+  // Compute from 1 to n-1
+
+  NumericVector p1(n-1);
+
+  for (int i = 0; i < n-1; i++){
+    p1[i] = ab[i];
+  }
+
+  // Compute from 2 to n
+
+  NumericVector p2(n-1);
+
+  for (int i = 1; i < n; i++){
+    p2[i] = ab[i];
+  }
+
+  // Assess differences
+
+  NumericVector cross(n-1);
+
+  for (int i = 1; i < n-1; i++){
+    if (p1[i] != p2[i]) {
+      cross[i] = 1;
+    } else{
+      cross[i] = 0;
+    }
+  }
+
+  // Sum up crossing points
+
+  int crossing_points;
+  crossing_points = 0;
+
+  for (int i=0; i < n; i++) {
+    crossing_points += i;
+  }
+
+  return crossing_points;
 }
