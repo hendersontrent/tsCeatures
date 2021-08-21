@@ -1,7 +1,7 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
-//' Function to calculate lumpiness
+//' Calculate lumpiness
 //'
 //' @param x a numerical time-series input vector
 //' @return scalar value

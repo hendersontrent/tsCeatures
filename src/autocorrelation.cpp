@@ -1,7 +1,7 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
-//' Function to calculate autocorrelation coefficient at lag 1
+//' Calculate autocorrelation function at lag 1
 //'
 //' @param x a numerical time-series input vector
 //' @return scalar value
@@ -17,7 +17,7 @@ double ac_1(NumericVector x){
   int n = x.size();
 }
 
-//' Function to calculate autocorrelation coefficient at lag 2
+//' Calculate autocorrelation function at lag 2
 //'
 //' @param x a numerical time-series input vector
 //' @return scalar value

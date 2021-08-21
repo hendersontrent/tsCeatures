@@ -1,7 +1,7 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
-//' Function to calculate number of crossing points
+//' Calculate number of crossing points
 //'
 //' @param x a numerical time-series input vector
 //' @return scalar value

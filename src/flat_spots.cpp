@@ -1,7 +1,7 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
-//' Function to calculate number of flat spots
+//' Calculate number of flat spots
 //'
 //' @param x a numerical time-series input vector
 //' @return scalar value
