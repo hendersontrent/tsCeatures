@@ -9,20 +9,18 @@
 #' outs <- compute_tsCeatures(x)
 #'
 
-compute_tsCeatures <- function(x){
+calc_tsCeatures <- function(x){
 
   names <- c('mean',
              'median',
              'sd',
              'crossing_points',
-             'quantile_1',
              'quantile_5',
              'quantile_10',
              'quantile_25',
              'quantile_75',
              'quantile_90',
              'quantile_95',
-             'quantile_99',
              'ac_1',
              'ac_2',
              'lumpiness',
