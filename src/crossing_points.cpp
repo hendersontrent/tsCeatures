@@ -1,7 +1,7 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
-//' Function to calculate number of crossing points
+//' Calculate number of crossing points
 //'
 //' @param x a numerical time-series input vector
 //' @return scalar value
@@ -17,6 +17,7 @@ int crossing_points(NumericVector x){
   // Compute median
 
   int n = x.size();
+  NumericVector x_sort = x;
   double median;
 
   if (n == 0)
@@ -25,20 +26,20 @@ int crossing_points(NumericVector x){
   }
   else
   {
-    std::sort(x.begin(), x.end());
+    std::sort(x_sort.begin(), x_sort.end());
     if (n % 2 == 0)
     {
-      median = (x[n / 2 - 1] + x[n / 2]) / 2;
+      median = (x_sort[n / 2 - 1] + x_sort[n / 2]) / 2;
     }
     else
     {
-      median = x[n / 2];
+      median = x_sort[n / 2];
     }
   }
 
   // Get signature of whether each point is below or equal to median
 
-  NumericVector ab(n);
+  IntegerVector ab(n);
 
   for (int i = 0; i < n; i++){
     if (x[i] <= median) {
@@ -50,7 +51,7 @@ int crossing_points(NumericVector x){
 
   // Compute from 1 to n-1
 
-  NumericVector p1(n-1);
+  IntegerVector p1(n-1);
 
   for (int i = 0; i < n-1; i++){
     p1[i] = ab[i];
@@ -58,7 +59,7 @@ int crossing_points(NumericVector x){
 
   // Compute from 2 to n
 
-  NumericVector p2(n-1);
+  IntegerVector p2(n-1);
 
   for (int i = 1; i < n; i++){
     p2[i] = ab[i];
@@ -66,7 +67,7 @@ int crossing_points(NumericVector x){
 
   // Assess differences
 
-  NumericVector cross(n-1);
+  IntegerVector cross(n-1);
 
   for (int i = 1; i < n-1; i++){
     if (p1[i] != p2[i]) {
@@ -78,11 +79,10 @@ int crossing_points(NumericVector x){
 
   // Sum up crossing points
 
-  int crossing_points;
-  crossing_points = 0;
+  int crossing_points = 0;
 
-  for (int i=0; i < n; i++) {
-    crossing_points += i;
+  for (int i = 0; i < n-1; i++) {
+    crossing_points += cross[i];
   }
 
   return crossing_points;

@@ -1,23 +1,7 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
-//' Function to calculate Quantile 1
-//'
-//' @param x a numerical time-series input vector
-//' @return scalar value
-//' @author Trent Henderson
-//' @export
-//' @examples
-//' x <- rnorm(100)
-//' quantile_1(x)
-//'
-// [[Rcpp::export]]
-double quantile_1(NumericVector x){
-
-  int n = x.size();
-}
-
-//' Function to calculate Quantile 5
+//' Calculate Quantile 5
 //'
 //' @param x a numerical time-series input vector
 //' @return scalar value
@@ -31,9 +15,22 @@ double quantile_1(NumericVector x){
 double quantile_5(NumericVector x){
 
   int n = x.size();
+  double rank;
+  int pos_ind;
+  double quantile;
+
+  // Compute rank of quantile value
+
+  rank = n*(0.05);
+  pos_ind = std::round(rank);
+
+  // Index original vector to get the value
+
+  quantile = x[pos_ind];
+  return(quantile);
 }
 
-//' Function to calculate Quantile 10
+//' Calculate Quantile 10
 //'
 //' @param x a numerical time-series input vector
 //' @return scalar value
@@ -47,9 +44,22 @@ double quantile_5(NumericVector x){
 double quantile_10(NumericVector x){
 
   int n = x.size();
+  double rank;
+  int pos_ind;
+  double quantile;
+
+  // Compute rank of quantile value
+
+  rank = n*(0.1);
+  pos_ind = std::round(rank);
+
+  // Index original vector to get the value
+
+  quantile = x[pos_ind];
+  return(quantile);
 }
 
-//' Function to calculate Quantile 25
+//' Calculate Quantile 25
 //'
 //' @param x a numerical time-series input vector
 //' @return scalar value
@@ -63,9 +73,22 @@ double quantile_10(NumericVector x){
 double quantile_25(NumericVector x){
 
   int n = x.size();
+  double rank;
+  int pos_ind;
+  double quantile;
+
+  // Compute rank of quantile value
+
+  rank = n*(0.25);
+  pos_ind = std::round(rank);
+
+  // Index original vector to get the value
+
+  quantile = x[pos_ind];
+  return(quantile);
 }
 
-//' Function to calculate Quantile 75
+//' Calculate Quantile 75
 //'
 //' @param x a numerical time-series input vector
 //' @return scalar value
@@ -79,9 +102,22 @@ double quantile_25(NumericVector x){
 double quantile_75(NumericVector x){
 
   int n = x.size();
+  double rank;
+  int pos_ind;
+  double quantile;
+
+  // Compute rank of quantile value
+
+  rank = n*(0.75);
+  pos_ind = std::round(rank);
+
+  // Index original vector to get the value
+
+  quantile = x[pos_ind];
+  return(quantile);
 }
 
-//' Function to calculate Quantile 90
+//' Calculate Quantile 90
 //'
 //' @param x a numerical time-series input vector
 //' @return scalar value
@@ -95,9 +131,22 @@ double quantile_75(NumericVector x){
 double quantile_90(NumericVector x){
 
   int n = x.size();
+  double rank;
+  int pos_ind;
+  double quantile;
+
+  // Compute rank of quantile value
+
+  rank = n*(0.90);
+  pos_ind = std::round(rank);
+
+  // Index original vector to get the value
+
+  quantile = x[pos_ind];
+  return(quantile);
 }
 
-//' Function to calculate Quantile 95
+//' Calculate Quantile 95
 //'
 //' @param x a numerical time-series input vector
 //' @return scalar value
@@ -111,20 +160,17 @@ double quantile_90(NumericVector x){
 double quantile_95(NumericVector x){
 
   int n = x.size();
-}
+  double rank;
+  int pos_ind;
+  double quantile;
 
-//' Function to calculate Quantile 99
-//'
-//' @param x a numerical time-series input vector
-//' @return scalar value
-//' @author Trent Henderson
-//' @export
-//' @examples
-//' x <- rnorm(100)
-//' quantile_99(x)
-//'
-// [[Rcpp::export]]
-double quantile_99(NumericVector x){
+  // Compute rank of quantile value
 
-  int n = x.size();
+  rank = n*(0.95);
+  pos_ind = std::round(rank);
+
+  // Index original vector to get the value
+
+  quantile = x[pos_ind];
+  return(quantile);
 }

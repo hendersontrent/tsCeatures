@@ -2,6 +2,8 @@
 
 R package for computation of some simple time-series features coded in C++ for efficiency and scalability.
 
+The package name is a meme on the `tsfeatures` naming convention in the time series software world and should not be taken seriously.
+
 ## Installation
 
 You can install the development version of `tsCeatures` from GitHub using the following:
