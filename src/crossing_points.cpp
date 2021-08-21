@@ -17,6 +17,7 @@ int crossing_points(NumericVector x){
   // Compute median
 
   int n = x.size();
+  NumericVector x_sort = x;
   double median;
 
   if (n == 0)
@@ -25,14 +26,14 @@ int crossing_points(NumericVector x){
   }
   else
   {
-    std::sort(x.begin(), x.end());
+    std::sort(x_sort.begin(), x_sort.end());
     if (n % 2 == 0)
     {
-      median = (x[n / 2 - 1] + x[n / 2]) / 2;
+      median = (x_sort[n / 2 - 1] + x_sort[n / 2]) / 2;
     }
     else
     {
-      median = x[n / 2];
+      median = x_sort[n / 2];
     }
   }
 
@@ -82,7 +83,7 @@ int crossing_points(NumericVector x){
   crossing_points = 0;
 
   for (int i=0; i < n; i++) {
-    crossing_points += i;
+    crossing_points += cross[i];
   }
 
   return crossing_points;
