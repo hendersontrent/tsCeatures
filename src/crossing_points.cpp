@@ -69,7 +69,7 @@ int crossing_points(NumericVector x){
 
   IntegerVector cross(n-1);
 
-  for (int i = 1; i < n-1; i++){
+  for (int i = 0; i < n-1; i++){
     if (p1[i] != p2[i]) {
       cross[i] = 1;
     } else{
