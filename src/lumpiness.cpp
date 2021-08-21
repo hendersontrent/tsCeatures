@@ -74,11 +74,38 @@ double lumpiness(NumericVector x){
   // Variance of x
 
   NumericVector varx(nsegs);
+  double total_var = 0;
+  double mean;
+  int diff;
 
-  for(int i = 0; i < nsegs; ++i) {
+  for (int i = 0; i < nsegs; i++) {
+    diff = up[i]-lo[i];
 
-    x1[i] = ((x[i]-mu)/sigma);
+    // Subset vector to the sliding window
 
+    NumericVector x_slide(diff);
+
+    for(int j = lo[i]; j < up[j]; ++j) {
+      x_slide[j] = x1[j];
+    }
+
+    int n_slide = x_slide.size();
+
+    // Compute mean
+
+    for(int j = 0; j < n_slide; ++j) {
+      total_var += x_slide[j];
+    }
+
+    mean = total_var/n_slide;
+
+    // Compute variance
+
+    for(int j = 0; j < n_slide; ++j) {
+      total_var += (x_slide[j]-mean)*(x_slide[j]-mean);
+    }
+
+    varx[i] = total_var/(n_slide-1);
   }
 
   // Compute lumpiness
@@ -88,13 +115,23 @@ double lumpiness(NumericVector x){
   if (n < 2*width) {
     lumpiness = 0;
   } else {
-    double total_var = 0;
+    double total_lump = 0;
+    double mean_lump;
+    double var_lump = 0;
 
-    for(int i = 0; i < n; ++i) {
-      x1[i] = ((x[i]-mu)*(x[i]-mu));
+    // Compute mean
+
+    for(int i = 0; i < nsegs; ++i) {
+      total_lump += varx[i];
     }
 
-    lumpiness = total_var/n-1;
+    mean_lump = total_lump/nsegs;
+
+    for(int i = 0; i < nsegs; ++i) {
+      var_lump += (varx[i]-mean)*(varx[i]-mean);
+    }
+
+    lumpiness = var_lump/n-1;
   }
 
   return lumpiness;
