@@ -81,7 +81,7 @@ int crossing_points(NumericVector x){
 
   int crossing_points = 0;
 
-  for (int i = 0; i < n; i++) {
+  for (int i = 0; i < n-1; i++) {
     crossing_points += cross[i];
   }
 
