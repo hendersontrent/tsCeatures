@@ -39,7 +39,7 @@ int crossing_points(NumericVector x){
 
   // Get signature of whether each point is below or equal to median
 
-  NumericVector ab(n);
+  IntegerVector ab(n);
 
   for (int i = 0; i < n; i++){
     if (x[i] <= median) {
@@ -51,7 +51,7 @@ int crossing_points(NumericVector x){
 
   // Compute from 1 to n-1
 
-  NumericVector p1(n-1);
+  IntegerVector p1(n-1);
 
   for (int i = 0; i < n-1; i++){
     p1[i] = ab[i];
@@ -59,7 +59,7 @@ int crossing_points(NumericVector x){
 
   // Compute from 2 to n
 
-  NumericVector p2(n-1);
+  IntegerVector p2(n-1);
 
   for (int i = 1; i < n; i++){
     p2[i] = ab[i];
@@ -67,7 +67,7 @@ int crossing_points(NumericVector x){
 
   // Assess differences
 
-  NumericVector cross(n-1);
+  IntegerVector cross(n-1);
 
   for (int i = 1; i < n-1; i++){
     if (p1[i] != p2[i]) {
@@ -79,10 +79,9 @@ int crossing_points(NumericVector x){
 
   // Sum up crossing points
 
-  int crossing_points;
-  crossing_points = 0;
+  int crossing_points = 0;
 
-  for (int i=0; i < n; i++) {
+  for (int i = 0; i < n; i++) {
     crossing_points += cross[i];
   }
 
