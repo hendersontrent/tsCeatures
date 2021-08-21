@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-`tsCeatures` is a simple R package for the computation of a few time-series features coded in C++ for scalability and efficiency. The name is a meme on the `tsfeatures` naming convention in the time series software world. You can install `tsCeatures` from GitHub:
+`tsCeatures` is a simple R package for the computation of a few time-series features coded in C++ for scalability and efficiency. The name is a play on the `tsfeatures` naming convention in the time series software world. You can install `tsCeatures` from GitHub:
 
 ```{r, message = FALSE, warning = FALSE}
 devtools::install_github("hendersontrent/tsCeatures")
