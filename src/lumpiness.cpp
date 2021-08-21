@@ -1,10 +1,11 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
-//' Calculate lumpiness which is variance of tiled window variances
+//' Calculate lumpiness which is the variance of tiled window variances
 //'
 //' @param x a numerical time-series input vector
 //' @return scalar value
+//' @references  Rob Hyndman, Yanfei Kang, Pablo Montero-Manso, Thiyanga Talagala, Earo Wang, Yangzhuoran Yang and Mitchell O'Hara-Wild (2020). tsfeatures: Time Series Feature Extraction. R package version 1.0.2. https://CRAN.R-project.org/package=tsfeatures
 //' @author Trent Henderson
 //' @export
 //' @examples
@@ -43,12 +44,28 @@ double lumpiness(NumericVector x){
     x1[i] = ((x[i]-mu)/sigma);
   }
 
-  // Width routine
+  // Width routines
 
-  int width = 0;
+  int width = 10; // Fix to 10 as pkg assumes uniform sampling (10 matches {tsfeatures})
 
-  NumericVector lo(n);
-  NumericVector up(n);
+  IntegerVector lo(n);
+  IntegerVector up(n);
+
+  for (int i = 0; i < n; ++i) {
+    if (i == 0) {
+      lo[i] = 1;
+    } else{
+      lo[i] = lo[i-1]+10;
+    }
+  }
+
+  for (int i = 0; i < n+width; ++i) {
+    if (i == 0) {
+      up[i] = 10;
+    } else{
+      up[i] = up[i-1]+10;
+    }
+  }
 
   // Segs
 
@@ -57,6 +74,12 @@ double lumpiness(NumericVector x){
   // Variance of x
 
   NumericVector varx(nsegs);
+
+  for(int i = 0; i < nsegs; ++i) {
+
+    x1[i] = ((x[i]-mu)/sigma);
+
+  }
 
   // Compute lumpiness
 
