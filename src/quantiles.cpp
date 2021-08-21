@@ -15,6 +15,19 @@ using namespace Rcpp;
 double quantile_5(NumericVector x){
 
   int n = x.size();
+  double rank;
+  int pos_ind;
+  double quantile;
+
+  // Compute rank of quantile value
+
+  rank = n*(0.05);
+  pos_ind = std::round(rank);
+
+  // Index original vector to get the value
+
+  quantile = x[pos_ind];
+  return(quantile);
 }
 
 //' Calculate Quantile 10
@@ -31,6 +44,19 @@ double quantile_5(NumericVector x){
 double quantile_10(NumericVector x){
 
   int n = x.size();
+  double rank;
+  int pos_ind;
+  double quantile;
+
+  // Compute rank of quantile value
+
+  rank = n*(0.1);
+  pos_ind = std::round(rank);
+
+  // Index original vector to get the value
+
+  quantile = x[pos_ind];
+  return(quantile);
 }
 
 //' Calculate Quantile 25
@@ -47,6 +73,19 @@ double quantile_10(NumericVector x){
 double quantile_25(NumericVector x){
 
   int n = x.size();
+  double rank;
+  int pos_ind;
+  double quantile;
+
+  // Compute rank of quantile value
+
+  rank = n*(0.25);
+  pos_ind = std::round(rank);
+
+  // Index original vector to get the value
+
+  quantile = x[pos_ind];
+  return(quantile);
 }
 
 //' Calculate Quantile 75
@@ -63,6 +102,19 @@ double quantile_25(NumericVector x){
 double quantile_75(NumericVector x){
 
   int n = x.size();
+  double rank;
+  int pos_ind;
+  double quantile;
+
+  // Compute rank of quantile value
+
+  rank = n*(0.75);
+  pos_ind = std::round(rank);
+
+  // Index original vector to get the value
+
+  quantile = x[pos_ind];
+  return(quantile);
 }
 
 //' Calculate Quantile 90
@@ -79,6 +131,19 @@ double quantile_75(NumericVector x){
 double quantile_90(NumericVector x){
 
   int n = x.size();
+  double rank;
+  int pos_ind;
+  double quantile;
+
+  // Compute rank of quantile value
+
+  rank = n*(0.90);
+  pos_ind = std::round(rank);
+
+  // Index original vector to get the value
+
+  quantile = x[pos_ind];
+  return(quantile);
 }
 
 //' Calculate Quantile 95
@@ -95,4 +160,17 @@ double quantile_90(NumericVector x){
 double quantile_95(NumericVector x){
 
   int n = x.size();
+  double rank;
+  int pos_ind;
+  double quantile;
+
+  // Compute rank of quantile value
+
+  rank = n*(0.95);
+  pos_ind = std::round(rank);
+
+  // Index original vector to get the value
+
+  quantile = x[pos_ind];
+  return(quantile);
 }
