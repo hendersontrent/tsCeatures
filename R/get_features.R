@@ -21,7 +21,14 @@ get_features <- function(x){
                           sd = stats::sd(x, na.rm = TRUE),
                           ac_1 = ac_1(x),
                           ac_2 = ac_2(x),
-                          crossing_points = crossing_points(x))
+                          crossing_points = crossing_points(x),
+                          trev_num = trev_num(x),
+                          quantile_5 = quantile_5(x),
+                          quantile_10 = quantile_10(x),
+                          quantile_25 = quantile_25(x),
+                          quantile_75 = quantile_75(x),
+                          quantile_90 = quantile_90(x),
+                          quantile_95 = quantile_95(x))
 
     return(outData)
   }
