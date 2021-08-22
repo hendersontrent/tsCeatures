@@ -41,7 +41,7 @@ double lumpiness(NumericVector x){
   // Scale time series using z-score formula
 
   for(int i = 0; i < n; ++i) {
-    x1[i] = ((x[i]-mu)/sigma);
+    x[i] = ((x[i]-mu)/sigma);
   }
 
   // Width routines
@@ -70,42 +70,35 @@ double lumpiness(NumericVector x){
   // Segs
 
   int nsegs = n / width;
+  int nlength = up[1]-lo[1];
 
-  // Variance of x
+  // Variance of each sliding window
 
+  NumericVector total_var(nsegs);
+  NumericVector total_var_sum(nsegs);
+  NumericVector mean(nsegs);
   NumericVector varx(nsegs);
-  double total_var = 0;
-  double mean;
-  int diff;
 
   for (int i = 0; i < nsegs; i++) {
-    diff = up[i]-lo[i];
 
-    // Subset vector to the sliding window
+    total_var[i] = 0;
+    mean[i] = 0;
 
-    NumericVector x_slide(diff);
+    // Compute tiled window metrics
 
-    for(int j = lo[i]; j < up[j]; ++j) {
-      x_slide[j] = x1[j];
+    for (int k = lo[i]; k < up[i]; ++k){
+      total_var[i] += x[k];
     }
 
-    int n_slide = x_slide.size();
-
-    // Compute mean
-
-    for(int j = 0; j < n_slide; ++j) {
-      total_var += x_slide[j];
-    }
-
-    mean = total_var/n_slide;
+    mean[i] = total_var[i]/nlength;
 
     // Compute variance
 
-    for(int j = 0; j < n_slide; ++j) {
-      total_var += (x_slide[j]-mean)*(x_slide[j]-mean);
+    for (int k = lo[i]; k < up[i]; ++k){
+      total_var_sum[i] += (x[k]-mean[i])*(x[k]-mean[i]);
     }
 
-    varx[i] = total_var/(n_slide-1);
+    varx[i] = total_var_sum[i]/(nlength-1);
   }
 
   // Compute lumpiness
@@ -128,7 +121,7 @@ double lumpiness(NumericVector x){
     mean_lump = total_lump/nsegs;
 
     for(int i = 0; i < nsegs; ++i) {
-      var_lump += (varx[i]-mean)*(varx[i]-mean);
+      var_lump += (varx[i]-mean_lump)*(varx[i]-mean_lump);
     }
 
     lumpiness = var_lump/n-1;

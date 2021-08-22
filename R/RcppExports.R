@@ -43,24 +43,11 @@ crossing_points <- function(x) {
     .Call(`_tsCeatures_crossing_points`, x)
 }
 
-#' Calculate number of flat spots
+#' Calculate lumpiness which is the variance of tiled window variances
 #'
 #' @param x a numerical time-series input vector
 #' @return scalar value
-#' @author Trent Henderson
-#' @export
-#' @examples
-#' x <- rnorm(100)
-#' flat_spots(x)
-#'
-flat_spots <- function(x) {
-    .Call(`_tsCeatures_flat_spots`, x)
-}
-
-#' Calculate lumpiness
-#'
-#' @param x a numerical time-series input vector
-#' @return scalar value
+#' @references  Rob Hyndman, Yanfei Kang, Pablo Montero-Manso, Thiyanga Talagala, Earo Wang, Yangzhuoran Yang and Mitchell O'Hara-Wild (2020). tsfeatures: Time Series Feature Extraction. R package version 1.0.2. https://CRAN.R-project.org/package=tsfeatures
 #' @author Trent Henderson
 #' @export
 #' @examples
@@ -155,10 +142,11 @@ quantile_95 <- function(x) {
     .Call(`_tsCeatures_quantile_95`, x)
 }
 
-#' Calculate stability
+#' Calculate stability which is the variance of tiled window means
 #'
 #' @param x a numerical time-series input vector
 #' @return scalar value
+#' @references  Rob Hyndman, Yanfei Kang, Pablo Montero-Manso, Thiyanga Talagala, Earo Wang, Yangzhuoran Yang and Mitchell O'Hara-Wild (2020). tsfeatures: Time Series Feature Extraction. R package version 1.0.2. https://CRAN.R-project.org/package=tsfeatures
 #' @author Trent Henderson
 #' @export
 #' @examples
