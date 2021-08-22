@@ -1,10 +1,11 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
-//' Calculate stability which is variance of tiled window means
+//' Calculate stability which is the variance of tiled window means
 //'
 //' @param x a numerical time-series input vector
 //' @return scalar value
+//' @references  Rob Hyndman, Yanfei Kang, Pablo Montero-Manso, Thiyanga Talagala, Earo Wang, Yangzhuoran Yang and Mitchell O'Hara-Wild (2020). tsfeatures: Time Series Feature Extraction. R package version 1.0.2. https://CRAN.R-project.org/package=tsfeatures
 //' @author Trent Henderson
 //' @export
 //' @examples
@@ -40,23 +41,55 @@ double stability(NumericVector x){
   // Scale time series using z-score formula
 
   for(int i = 0; i < n; ++i) {
-    x1[i] = ((x[i]-mu)/sigma);
+    x[i] = ((x[i]-mu)/sigma);
   }
 
-  // Width routine
+  // Width routines
 
-  int width = 0;
+  int width = 10; // Fix to 10 as pkg assumes uniform sampling (10 matches {tsfeatures})
 
-  NumericVector lo(n);
-  NumericVector up(n);
+  IntegerVector lo(n);
+  IntegerVector up(n);
+
+  for (int i = 0; i < n; ++i) {
+    if (i == 0) {
+      lo[i] = 1;
+    } else{
+      lo[i] = lo[i-1]+10;
+    }
+  }
+
+  for (int i = 0; i < n+width; ++i) {
+    if (i == 0) {
+      up[i] = 10;
+    } else{
+      up[i] = up[i-1]+10;
+    }
+  }
 
   // Segs
 
   int nsegs = n / width;
+  int nlength = up[1]-lo[1];
 
-  // Variance of x
+  // Variance of each sliding window
 
-  NumericVector varx(nsegs);
+  NumericVector mean(nsegs);
+  NumericVector total_mean(nsegs);
+
+  for (int i = 0; i < nsegs; i++) {
+
+    total_mean[i] = 0;
+    mean[i] = 0;
+
+    // Compute tiled window metrics
+
+    for (int k = lo[i]; k < up[i]; ++k){
+      total_mean[i] += x[k];
+    }
+
+    mean[i] = total_mean[i]/nlength;
+  }
 
   // Compute stability
 
@@ -65,13 +98,23 @@ double stability(NumericVector x){
   if (n < 2*width) {
     stability = 0;
   } else {
-    double total_var = 0;
+    double total_stab = 0;
+    double mean_stab;
+    double var_stab = 0;
 
-    for(int i = 0; i < n; ++i) {
-      x1[i] = ((x[i]-mu)*(x[i]-mu));
+    // Compute mean
+
+    for(int i = 0; i < nsegs; ++i) {
+      total_stab += mean[i];
     }
 
-    stability = total_var/n-1;
+    mean_stab = total_stab/nsegs;
+
+    for(int i = 0; i < nsegs; ++i) {
+      var_stab += (mean[i]-mean_stab)*(mean[i]-mean_stab);
+    }
+
+    stability = var_stab/n-1;
   }
 
   return stability;
