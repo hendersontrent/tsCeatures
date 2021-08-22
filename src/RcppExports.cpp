@@ -49,6 +49,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// prop_above_mean
+double prop_above_mean(NumericVector x);
+RcppExport SEXP _tsCeatures_prop_above_mean(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(prop_above_mean(x));
+    return rcpp_result_gen;
+END_RCPP
+}
 // quantile_5
 double quantile_5(NumericVector x);
 RcppExport SEXP _tsCeatures_quantile_5(SEXP xSEXP) {
@@ -143,6 +154,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_tsCeatures_ac_2", (DL_FUNC) &_tsCeatures_ac_2, 1},
     {"_tsCeatures_crossing_points", (DL_FUNC) &_tsCeatures_crossing_points, 1},
     {"_tsCeatures_lumpiness", (DL_FUNC) &_tsCeatures_lumpiness, 1},
+    {"_tsCeatures_prop_above_mean", (DL_FUNC) &_tsCeatures_prop_above_mean, 1},
     {"_tsCeatures_quantile_5", (DL_FUNC) &_tsCeatures_quantile_5, 1},
     {"_tsCeatures_quantile_10", (DL_FUNC) &_tsCeatures_quantile_10, 1},
     {"_tsCeatures_quantile_25", (DL_FUNC) &_tsCeatures_quantile_25, 1},

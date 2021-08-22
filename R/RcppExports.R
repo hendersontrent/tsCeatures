@@ -58,6 +58,22 @@ lumpiness <- function(x) {
     .Call('_tsCeatures_lumpiness', PACKAGE = 'tsCeatures', x)
 }
 
+#' Calculate proportion of points above the mean, as per binarize_mean from the MATLAB toolbox \code{hctsa}
+#'
+#' @param x a numerical time-series input vector
+#' @return scalar value
+#' @references B.D. Fulcher and N.S. Jones. hctsa: A computational framework for automated time-series phenotyping using massive feature extraction. Cell Systems 5, 527 (2017).
+#' @references B.D. Fulcher, M.A. Little, N.S. Jones Highly comparative time-series analysis: the empirical structure of time series and their methods. J. Roy. Soc. Interface 10, 83 (2013).
+#' @author Trent Henderson
+#' @export
+#' @examples
+#' x <- rnorm(100)
+#' prop_above_mean(x)
+#'
+prop_above_mean <- function(x) {
+    .Call('_tsCeatures_prop_above_mean', PACKAGE = 'tsCeatures', x)
+}
+
 #' Calculate Quantile 5
 #'
 #' @param x a numerical time-series input vector

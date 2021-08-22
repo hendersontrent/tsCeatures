@@ -28,7 +28,8 @@ get_features <- function(x){
                           quantile_25 = quantile_25(x),
                           quantile_75 = quantile_75(x),
                           quantile_90 = quantile_90(x),
-                          quantile_95 = quantile_95(x))
+                          quantile_95 = quantile_95(x),
+                          prop_above_mean = prop_above_mean(x))
 
     return(outData)
   }
