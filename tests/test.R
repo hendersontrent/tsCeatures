@@ -12,4 +12,4 @@ library(tsCeatures)
 # Calculations
 
 x <- rnorm(1000)
-outs <- calc_tsCeatures(x)
+outs <- get_features(x)

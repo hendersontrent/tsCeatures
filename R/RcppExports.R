@@ -12,7 +12,7 @@
 #' ac_1(x)
 #'
 ac_1 <- function(x) {
-    .Call(`_tsCeatures_ac_1`, x)
+    .Call('_tsCeatures_ac_1', PACKAGE = 'tsCeatures', x)
 }
 
 #' Calculate autocorrelation function at lag 2
@@ -26,7 +26,7 @@ ac_1 <- function(x) {
 #' ac_2(x)
 #'
 ac_2 <- function(x) {
-    .Call(`_tsCeatures_ac_2`, x)
+    .Call('_tsCeatures_ac_2', PACKAGE = 'tsCeatures', x)
 }
 
 #' Calculate number of crossing points
@@ -40,7 +40,7 @@ ac_2 <- function(x) {
 #' crossing_points(x)
 #'
 crossing_points <- function(x) {
-    .Call(`_tsCeatures_crossing_points`, x)
+    .Call('_tsCeatures_crossing_points', PACKAGE = 'tsCeatures', x)
 }
 
 #' Calculate lumpiness which is the variance of tiled window variances
@@ -55,7 +55,7 @@ crossing_points <- function(x) {
 #' lumpiness(x)
 #'
 lumpiness <- function(x) {
-    .Call(`_tsCeatures_lumpiness`, x)
+    .Call('_tsCeatures_lumpiness', PACKAGE = 'tsCeatures', x)
 }
 
 #' Calculate Quantile 5
@@ -69,7 +69,7 @@ lumpiness <- function(x) {
 #' quantile_5(x)
 #'
 quantile_5 <- function(x) {
-    .Call(`_tsCeatures_quantile_5`, x)
+    .Call('_tsCeatures_quantile_5', PACKAGE = 'tsCeatures', x)
 }
 
 #' Calculate Quantile 10
@@ -83,7 +83,7 @@ quantile_5 <- function(x) {
 #' quantile_10(x)
 #'
 quantile_10 <- function(x) {
-    .Call(`_tsCeatures_quantile_10`, x)
+    .Call('_tsCeatures_quantile_10', PACKAGE = 'tsCeatures', x)
 }
 
 #' Calculate Quantile 25
@@ -97,7 +97,7 @@ quantile_10 <- function(x) {
 #' quantile_25(x)
 #'
 quantile_25 <- function(x) {
-    .Call(`_tsCeatures_quantile_25`, x)
+    .Call('_tsCeatures_quantile_25', PACKAGE = 'tsCeatures', x)
 }
 
 #' Calculate Quantile 75
@@ -111,7 +111,7 @@ quantile_25 <- function(x) {
 #' quantile_75(x)
 #'
 quantile_75 <- function(x) {
-    .Call(`_tsCeatures_quantile_75`, x)
+    .Call('_tsCeatures_quantile_75', PACKAGE = 'tsCeatures', x)
 }
 
 #' Calculate Quantile 90
@@ -125,7 +125,7 @@ quantile_75 <- function(x) {
 #' quantile_90(x)
 #'
 quantile_90 <- function(x) {
-    .Call(`_tsCeatures_quantile_90`, x)
+    .Call('_tsCeatures_quantile_90', PACKAGE = 'tsCeatures', x)
 }
 
 #' Calculate Quantile 95
@@ -139,7 +139,7 @@ quantile_90 <- function(x) {
 #' quantile_95(x)
 #'
 quantile_95 <- function(x) {
-    .Call(`_tsCeatures_quantile_95`, x)
+    .Call('_tsCeatures_quantile_95', PACKAGE = 'tsCeatures', x)
 }
 
 #' Calculate stability which is the variance of tiled window means
@@ -154,6 +154,6 @@ quantile_95 <- function(x) {
 #' stability(x)
 #'
 stability <- function(x) {
-    .Call(`_tsCeatures_stability`, x)
+    .Call('_tsCeatures_stability', PACKAGE = 'tsCeatures', x)
 }
 
