@@ -1,0 +1,77 @@
+---
+output: rmarkdown::github_document
+---
+
+# tsCeatures <img src="man/figures/logo.png" align="right" width="120" />
+
+R package for computation of some simple time-series features coded in C++ for efficiency and scalability.
+
+The package name is a play on the `tsfeatures` naming convention in the time series software world and should not be taken seriously.
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+comment = NA, fig.width = 7, fig.height = 5, cache = FALSE)
+```
+
+## Installation
+
+You can install the development version of `tsCeatures` from GitHub using the following:
+
+```{r, eval = FALSE}
+devtools::install_github("hendersontrent/tsCeatures")
+```
+
+## Computational performance
+
+With features coded in C++, `tsCeatures` is highly computationally efficient. Computation time in seconds (log10 scaled) for a range of time-series lengths between `t = 10` and `t = 1000000` is presented below.
+
+```{r, message = FALSE, warning = FALSE, echo = FALSE}
+library(dplyr)
+library(ggplot2)
+library(microbenchmark)
+library(tsCeatures)
+
+set.seed(123)
+storage <- list()
+lengths <- c(10^1, 10^2, 10^3, 10^4, 10^5, 10^6)
+
+for(i in lengths){
+  
+  tmp <- c(cumsum(rnorm(i, mean = 0, sd = 1)))
+  
+  m <- summary(microbenchmark(get_features(tmp), times = 20, unit = "s"))
+  
+  mdat <- data.frame(m) %>%
+    dplyr::select(c(mean)) %>%
+    mutate(ts_length = i)
+  
+  storage[[i]] <- mdat
+}
+
+sims <- data.table::rbindlist(storage, use.names = TRUE)
+```
+
+```{r, message = FALSE, warning = FALSE, echo = FALSE, fig.keep = TRUE}
+# Draw graphic
+
+sims %>%
+  ggplot() +
+  geom_smooth(aes(x = ts_length, y = mean), formula = y ~ x, method = "lm", 
+              se = FALSE, size = 1.15, colour = "#1f78b4") +
+  geom_point(aes(x = ts_length, y = mean), size = 3.5, colour = "#1f78b4") +
+  labs(x = "Time Series Length",
+       y = "Computation Time (s)") +
+  scale_x_log10(limits = c(1e1,1e6),
+                breaks = scales::trans_breaks("log10", function(x) 10^x),
+                labels = scales::trans_format("log10", scales::math_format(10^.x))) +
+  scale_y_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),
+                labels = scales::trans_format("log10", scales::math_format(10^.x))) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        legend.position = "bottom",
+        axis.text = element_text(size = 12))
+```
+
+## Notes
+
+This package is a pretty low-fi and informal attempt at something interesting and is not intended as-yet to be a dedicated and useful feature set relative to existing sets and software packages.
