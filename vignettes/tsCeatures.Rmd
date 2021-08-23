@@ -31,3 +31,9 @@ The main function of the package is `get_features` which automatically computes 
 x <- rnorm(100)
 outs <- get_features(x)
 ```
+
+You can also calculate each of the features individually by directly calling their name:
+
+```{r, message = FALSE, warning = FALSE}
+ac_1(x)
+```
