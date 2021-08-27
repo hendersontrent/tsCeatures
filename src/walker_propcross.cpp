@@ -42,7 +42,7 @@ double walker_propcross(NumericVector x){
   NumericVector w2(n-1);
 
   for (int i = 1; i < n; ++i) {
-    w2[i] = w[i]-x[i];
+    w2[i-1] = w[i]-x[i];
   }
 
   // Multiply 2 parts
