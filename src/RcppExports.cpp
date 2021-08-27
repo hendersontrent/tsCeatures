@@ -43,6 +43,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// kurtosis
+double kurtosis(NumericVector x);
+RcppExport SEXP _tsCeatures_kurtosis(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(kurtosis(x));
+    return rcpp_result_gen;
+END_RCPP
+}
 // lumpiness
 double lumpiness(NumericVector x);
 RcppExport SEXP _tsCeatures_lumpiness(SEXP xSEXP) {
@@ -180,6 +191,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_tsCeatures_ac_1", (DL_FUNC) &_tsCeatures_ac_1, 1},
     {"_tsCeatures_ac_2", (DL_FUNC) &_tsCeatures_ac_2, 1},
     {"_tsCeatures_crossing_points", (DL_FUNC) &_tsCeatures_crossing_points, 1},
+    {"_tsCeatures_kurtosis", (DL_FUNC) &_tsCeatures_kurtosis, 1},
     {"_tsCeatures_lumpiness", (DL_FUNC) &_tsCeatures_lumpiness, 1},
     {"_tsCeatures_prop_above_mean", (DL_FUNC) &_tsCeatures_prop_above_mean, 1},
     {"_tsCeatures_quantile_5", (DL_FUNC) &_tsCeatures_quantile_5, 1},

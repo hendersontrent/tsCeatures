@@ -33,7 +33,8 @@ get_features <- function(x){
                           quantile_95 = quantile_95(x),
                           prop_above_mean = prop_above_mean(x),
                           walker_propcross = walker_propcross(x),
-                          skewness = skewness(x))
+                          skewness = skewness(x),
+                          kurtosis = kurtosis(x))
 
     return(outData)
   }
