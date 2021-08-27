@@ -158,6 +158,20 @@ quantile_95 <- function(x) {
     .Call('_tsCeatures_quantile_95', PACKAGE = 'tsCeatures', x)
 }
 
+#' Calculate adjusted Fisher-Pearson coefficient of skewness
+#'
+#' @param x a numerical time-series input vector
+#' @return scalar value
+#' @author Trent Henderson
+#' @export
+#' @examples
+#' x <- rnorm(100)
+#' skewness(x)
+#'
+skewness <- function(x) {
+    .Call('_tsCeatures_skewness', PACKAGE = 'tsCeatures', x)
+}
+
 #' Calculate stability which is the variance of tiled window means
 #'
 #' @param x a numerical time-series input vector
