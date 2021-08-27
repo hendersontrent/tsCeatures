@@ -189,3 +189,20 @@ trev_num <- function(x) {
     .Call('_tsCeatures_trev_num', PACKAGE = 'tsCeatures', x)
 }
 
+#' Calculate proportion of length that walker crosses time series, as per PH_Walker_prop_01_sw_propcross from the MATLAB toolbox \code{hctsa}
+#'
+#' @param x a numerical time-series input vector
+#' @return scalar value
+#' @references B.D. Fulcher and N.S. Jones. hctsa: A computational framework for automated time-series phenotyping using massive feature extraction. Cell Systems 5, 527 (2017).
+#' @references B.D. Fulcher, M.A. Little, N.S. Jones Highly comparative time-series analysis: the empirical structure of time series and their methods. J. Roy. Soc. Interface 10, 83 (2013).
+#' @references  Rob Hyndman, Yanfei Kang, Pablo Montero-Manso, Thiyanga Talagala, Earo Wang, Yangzhuoran Yang and Mitchell O'Hara-Wild (2020). tsfeatures: Time Series Feature Extraction. R package version 1.0.2. https://CRAN.R-project.org/package=tsfeatures
+#' @author Trent Henderson
+#' @export
+#' @examples
+#' x <- rnorm(100)
+#' walker_propcross(x)
+#'
+walker_propcross <- function(x) {
+    .Call('_tsCeatures_walker_propcross', PACKAGE = 'tsCeatures', x)
+}
+

@@ -7,7 +7,7 @@
 get_features(x)
 }
 \arguments{
-\item{x}{a numerical time-series input vector}
+\item{x}{a numerical time-series vector}
 }
 \value{
 object of class DataFrame that contains the summary statistics for each feature
