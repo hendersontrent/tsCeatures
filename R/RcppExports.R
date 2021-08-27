@@ -43,6 +43,20 @@ crossing_points <- function(x) {
     .Call('_tsCeatures_crossing_points', PACKAGE = 'tsCeatures', x)
 }
 
+#' Calculate tailedness of the value distribution
+#'
+#' @param x a numerical time-series input vector
+#' @return scalar value
+#' @author Trent Henderson
+#' @export
+#' @examples
+#' x <- rnorm(100)
+#' kurtosis(x)
+#'
+kurtosis <- function(x) {
+    .Call('_tsCeatures_kurtosis', PACKAGE = 'tsCeatures', x)
+}
+
 #' Calculate lumpiness which is the variance of tiled window variances
 #'
 #' @param x a numerical time-series input vector
@@ -156,6 +170,20 @@ quantile_90 <- function(x) {
 #'
 quantile_95 <- function(x) {
     .Call('_tsCeatures_quantile_95', PACKAGE = 'tsCeatures', x)
+}
+
+#' Calculate adjusted Fisher-Pearson coefficient of skewness
+#'
+#' @param x a numerical time-series input vector
+#' @return scalar value
+#' @author Trent Henderson
+#' @export
+#' @examples
+#' x <- rnorm(100)
+#' skewness(x)
+#'
+skewness <- function(x) {
+    .Call('_tsCeatures_skewness', PACKAGE = 'tsCeatures', x)
 }
 
 #' Calculate stability which is the variance of tiled window means

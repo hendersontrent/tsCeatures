@@ -43,6 +43,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// kurtosis
+double kurtosis(NumericVector x);
+RcppExport SEXP _tsCeatures_kurtosis(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(kurtosis(x));
+    return rcpp_result_gen;
+END_RCPP
+}
 // lumpiness
 double lumpiness(NumericVector x);
 RcppExport SEXP _tsCeatures_lumpiness(SEXP xSEXP) {
@@ -131,6 +142,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// skewness
+double skewness(NumericVector x);
+RcppExport SEXP _tsCeatures_skewness(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(skewness(x));
+    return rcpp_result_gen;
+END_RCPP
+}
 // stability
 double stability(NumericVector x);
 RcppExport SEXP _tsCeatures_stability(SEXP xSEXP) {
@@ -169,6 +191,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_tsCeatures_ac_1", (DL_FUNC) &_tsCeatures_ac_1, 1},
     {"_tsCeatures_ac_2", (DL_FUNC) &_tsCeatures_ac_2, 1},
     {"_tsCeatures_crossing_points", (DL_FUNC) &_tsCeatures_crossing_points, 1},
+    {"_tsCeatures_kurtosis", (DL_FUNC) &_tsCeatures_kurtosis, 1},
     {"_tsCeatures_lumpiness", (DL_FUNC) &_tsCeatures_lumpiness, 1},
     {"_tsCeatures_prop_above_mean", (DL_FUNC) &_tsCeatures_prop_above_mean, 1},
     {"_tsCeatures_quantile_5", (DL_FUNC) &_tsCeatures_quantile_5, 1},
@@ -177,6 +200,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_tsCeatures_quantile_75", (DL_FUNC) &_tsCeatures_quantile_75, 1},
     {"_tsCeatures_quantile_90", (DL_FUNC) &_tsCeatures_quantile_90, 1},
     {"_tsCeatures_quantile_95", (DL_FUNC) &_tsCeatures_quantile_95, 1},
+    {"_tsCeatures_skewness", (DL_FUNC) &_tsCeatures_skewness, 1},
     {"_tsCeatures_stability", (DL_FUNC) &_tsCeatures_stability, 1},
     {"_tsCeatures_trev_num", (DL_FUNC) &_tsCeatures_trev_num, 1},
     {"_tsCeatures_walker_propcross", (DL_FUNC) &_tsCeatures_walker_propcross, 1},
