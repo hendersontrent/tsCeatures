@@ -1,8 +1,8 @@
 Package: tsCeatures
 Type: Package
 Title: Computes Time Series Features
-Version: 0.1.1
-Date: 2021-08-23
+Version: 0.1.2
+Date: 2021-08-27
 Authors@R: c(
   person("Trent", "Henderson", email = "then6675@uni.sydney.edu.au", role = c("cre", "aut"))
   )

@@ -13,3 +13,7 @@ library(tsCeatures)
 
 x <- rnorm(1000)
 outs <- get_features(x)
+
+# Feature list
+
+View(feature_descriptions)

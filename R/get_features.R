@@ -12,8 +12,8 @@
 
 get_features <- function(x){
 
-  if(anyNA(x) || !is.numeric(x)){
-    stop("Input time series vector x should not have any missing or non-numeric values.")
+  if(anyNA(x) || !is.numeric(x) || length(x) < 10){
+    stop("Input time series vector x should not have any missing or non-numeric values and should be longer than 10 time points.")
   } else{
 
     outData <- data.frame(mean = mean(x, na.rm = TRUE),
