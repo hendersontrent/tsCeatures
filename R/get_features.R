@@ -34,7 +34,9 @@ get_features <- function(x){
                           prop_above_mean = prop_above_mean(x),
                           walker_propcross = walker_propcross(x),
                           skewness = skewness(x),
-                          kurtosis = kurtosis(x))
+                          kurtosis = kurtosis(x),
+                          histogram_mode_5 = histogram_mode_5(x),
+                          histogram_mode_10 = histogram_mode_10(x))
 
     return(outData)
   }

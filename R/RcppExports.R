@@ -33,6 +33,7 @@ ac_2 <- function(x) {
 #'
 #' @param x a numerical time-series input vector
 #' @return scalar value
+#' @references  Rob Hyndman, Yanfei Kang, Pablo Montero-Manso, Thiyanga Talagala, Earo Wang, Yangzhuoran Yang and Mitchell O'Hara-Wild (2020). tsfeatures: Time Series Feature Extraction. R package version 1.0.2. https://CRAN.R-project.org/package=tsfeatures
 #' @author Trent Henderson
 #' @export
 #' @examples
@@ -41,6 +42,38 @@ ac_2 <- function(x) {
 #'
 crossing_points <- function(x) {
     .Call('_tsCeatures_crossing_points', PACKAGE = 'tsCeatures', x)
+}
+
+#' Calculate mode of 10-binned histogram of the data vector similar to DN_HistogramMode_10 from the MATLAB toolbox \code{hctsa}
+#'
+#' @param x a numerical time-series input vector
+#' @return scalar value
+#' @references B.D. Fulcher and N.S. Jones. hctsa: A computational framework for automated time-series phenotyping using massive feature extraction. Cell Systems 5, 527 (2017).
+#' @references B.D. Fulcher, M.A. Little, N.S. Jones Highly comparative time-series analysis: the empirical structure of time series and their methods. J. Roy. Soc. Interface 10, 83 (2013).
+#' @author Trent Henderson
+#' @export
+#' @examples
+#' x <- rnorm(100)
+#' histogram_mode_10(x)
+#'
+histogram_mode_10 <- function(x) {
+    .Call('_tsCeatures_histogram_mode_10', PACKAGE = 'tsCeatures', x)
+}
+
+#' Calculate mode of 5-binned histogram of the data vector similar to DN_HistogramMode_5 from the MATLAB toolbox \code{hctsa}
+#'
+#' @param x a numerical time-series input vector
+#' @return scalar value
+#' @references B.D. Fulcher and N.S. Jones. hctsa: A computational framework for automated time-series phenotyping using massive feature extraction. Cell Systems 5, 527 (2017).
+#' @references B.D. Fulcher, M.A. Little, N.S. Jones Highly comparative time-series analysis: the empirical structure of time series and their methods. J. Roy. Soc. Interface 10, 83 (2013).
+#' @author Trent Henderson
+#' @export
+#' @examples
+#' x <- rnorm(100)
+#' histogram_mode_5(x)
+#'
+histogram_mode_5 <- function(x) {
+    .Call('_tsCeatures_histogram_mode_5', PACKAGE = 'tsCeatures', x)
 }
 
 #' Calculate tailedness of the value distribution

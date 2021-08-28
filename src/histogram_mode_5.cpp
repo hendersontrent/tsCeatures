@@ -1,0 +1,88 @@
+#include <Rcpp.h>
+using namespace Rcpp;
+
+//' Calculate mode of 5-binned histogram of the data vector similar to DN_HistogramMode_5 from the MATLAB toolbox \code{hctsa}
+//'
+//' @param x a numerical time-series input vector
+//' @return scalar value
+//' @references B.D. Fulcher and N.S. Jones. hctsa: A computational framework for automated time-series phenotyping using massive feature extraction. Cell Systems 5, 527 (2017).
+//' @references B.D. Fulcher, M.A. Little, N.S. Jones Highly comparative time-series analysis: the empirical structure of time series and their methods. J. Roy. Soc. Interface 10, 83 (2013).
+//' @author Trent Henderson
+//' @export
+//' @examples
+//' x <- rnorm(100)
+//' histogram_mode_5(x)
+//'
+// [[Rcpp::export]]
+double histogram_mode_5(NumericVector x){
+
+  int n = x.size();
+  int nBins = 5;
+  double min1 = min(x);
+  double max1 = max(x);
+  NumericVector binEdges(nBins);
+  double step = (max1 - min1) / (nBins - 1);
+  size_t i = 0;
+
+  // Get bin edges
+
+  for (auto& e : binEdges) {
+    e = min1 + step * i++;
+  }
+
+  // Calculate the sum of all values in each bin
+
+  IntegerVector binCounts(nBins);
+  binCounts[0] = 0;
+  binCounts[1] = 0;
+  binCounts[2] = 0;
+  binCounts[3] = 0;
+  binCounts[4] = 0;
+
+  for (int i = 0; i < n; ++i) {
+    if (x[i] <= binEdges[0]) {
+      binCounts[0] += 1;
+    } else if (x[i] > binEdges[0] && x[i] < binEdges[1]) {
+      binCounts[1] += 1;
+    } else if (x[i] > binEdges[1] && x[i] < binEdges[2]) {
+      binCounts[2] += 1;
+    } else if (x[i] > binEdges[2] && x[i] < binEdges[3]) {
+      binCounts[3] += 1;
+    } else {
+      binCounts[4] += 1;
+    }
+  }
+
+  // Compute bin centres from edges
+
+  NumericVector binCentres(nBins);
+
+  for (int i = 0; i < nBins; ++i) {
+    if (i == 0) {
+      binCentres[i] = (min1 + binEdges[i]) / 2;
+    } else if (i == nBins) {
+      binCentres[i] = (max1 + binEdges[i]) / 2;
+    } else {
+      binCentres[i] = (binEdges[i] + binEdges[i + 1]) / 2;
+    }
+  }
+
+  // Locate position of the bin with highest frequency
+
+  int binPos;
+
+  for (int i = 0; i < nBins; ++i) {
+    if (i == 0) {
+      binPos = 0;
+    } else {
+      if (binCounts[i] > binCounts[binPos]) {
+        binPos = i;
+      }
+    }
+  }
+
+  // Compute mean position of the bin centre corresponding to the bin with the highest frequency
+
+  double binMax = binCentres[binPos];
+  return binMax;
+}

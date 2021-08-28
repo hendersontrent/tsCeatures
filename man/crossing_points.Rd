@@ -20,6 +20,9 @@ x <- rnorm(100)
 crossing_points(x)
 
 }
+\references{
+Rob Hyndman, Yanfei Kang, Pablo Montero-Manso, Thiyanga Talagala, Earo Wang, Yangzhuoran Yang and Mitchell O'Hara-Wild (2020). tsfeatures: Time Series Feature Extraction. R package version 1.0.2. https://CRAN.R-project.org/package=tsfeatures
+}
 \author{
 Trent Henderson
 }
