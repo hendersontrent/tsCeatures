@@ -55,23 +55,34 @@ double histogram_mode_5(NumericVector x){
 
   // Compute bin centres from edges
 
-  NumericVector binCentres(nBins-1);
-  double binCentre_total = 0;
+  NumericVector binCentres(nBins);
 
-  for (int i = 0; i < nBins-1; ++i) {
-    binCentre_total += binCentres[i];
+  for (int i = 0; i < nBins; ++i) {
+    if (i == 0) {
+      binCentres[i] = (min1 + binEdges[i]) / 2;
+    } else if (i == nBins) {
+      binCentres[i] = (max1 + binEdges[i]) / 2;
+    } else {
+      binCentres[i] = (binEdges[i] + binEdges[i + 1]) / 2;
+    }
   }
 
-  //binCentres
+  // Locate position of the bin with highest frequency
 
-  // Compute mean position of the maximums to account for multiples
+  int binPos;
 
-  double binMax_total = 0;
-
-  for (int i = 0; i < nBins-1; ++i) {
-    binMax_total += binCentres[i];
+  for (int i = 0; i < nBins; ++i) {
+    if (i == 0) {
+      binPos = 0;
+    } else {
+      if (binCounts[i] > binCounts[binPos]) {
+        binPos = i;
+      }
+    }
   }
 
-  double binMax = binMax_total / (n-1);
+  // Compute mean position of the bin centre corresponding to the bin with the highest frequency
+
+  double binMax = binCentres[binPos];
   return binMax;
 }
