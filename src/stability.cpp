@@ -46,30 +46,28 @@ double stability(NumericVector x){
 
   // Width routines
 
-  int width = 10; // Fix to 10 as pkg assumes uniform sampling (10 matches {tsfeatures})
+  int by = 10;
+  int nRatio = (double(n) - 1) / double(by);
+  NumericVector lo(nRatio + 1);
 
-  IntegerVector lo(n);
-  IntegerVector up(n);
-
-  for (int i = 0; i < n; ++i) {
-    if (i == 0) {
-      lo[i] = 1;
-    } else{
-      lo[i] = lo[i-1]+10;
-    }
+  int z = 0;
+  for (double i = 1; i <= n; i = i + by) {
+    lo[z] = i;
+    z += 1;
   }
 
-  for (int i = 0; i < n+width; ++i) {
-    if (i == 0) {
-      up[i] = 10;
-    } else{
-      up[i] = up[i-1]+10;
-    }
+  int nRatio2 = ((double(n) + by) - double(by)) / double(by);
+  NumericVector up(nRatio2 + 1);
+
+  int z2 = 0;
+  for (double i = by; i <= n + by; i = i + by) {
+    up[z2] = i;
+    z2 += 1;
   }
 
   // Segs
 
-  int nsegs = n / width;
+  int nsegs = n / by;
   int nlength = up[1]-lo[1];
 
   // Variance of each sliding window
@@ -95,7 +93,7 @@ double stability(NumericVector x){
 
   double stability;
 
-  if (n < 2*width) {
+  if (n < 2*by) {
     stability = 0;
   } else {
     double total_stab = 0;
